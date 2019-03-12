@@ -72,6 +72,7 @@
         counterMood=2;
         counterSleep=0;
         counterHunger=2;
+        velocidad=0;
       } else {
         cnv.mouseClicked(empty);
       }
