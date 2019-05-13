@@ -15,14 +15,14 @@ var vel1 = 0;
 var vel2 = 0;
 var vel3 = 0;
 var vel = 0;
-var morirse=false;
+var morirse = false;
 var moverse = false;
 var contPinas = 0;
 var contAguacate = 0;
 var muestraPinas = 0;
 var muestraAguacate = 0;
 
-var animacion=false;
+var animacion = false;
 
 var posX = 460;
 var posY = 40;
@@ -44,6 +44,7 @@ var wC = 80;
 var hC = 50;
 
 var tiempo;
+var tiempoInicio;
 var crecimiento = 0;
 var movX = 0;
 var movY = 0;
@@ -123,9 +124,9 @@ function preload() {
   uvasImg = loadImage('assets/uvas.png');
   arbolAguacate = loadImage('assets/arbolAguacate.png');
   arbolPina = loadImage('assets/arbolPina.png');
-  
-  fuente1=loadFont('Pacifico-Regular.ttf');
-  fuente2=loadFont('Quicksand-Light.ttf');
+
+  fuente1 = loadFont('Pacifico-Regular.ttf');
+  fuente2 = loadFont('Quicksand-Light.ttf');
 
   tablaAguacate = loadTable('assets/aguacate.csv', 'csv', 'header');
 
@@ -150,266 +151,265 @@ function setup() {
 
 function draw() {
   background(220);
-  var areaTotal=(tablaAreaTotal.getNum(0,4))*10;
-  var areaAguacate = tablaAguacate.getNum(0,4);
-  var areaCocos = tablaCocos.getNum(0,4);
-  var areaFresas = tablaFresas.getNum(0,4);
-  var areaNaranjas = tablaNaranjas.getNum(0,4);
-  var areaPapayas=tablaPapayas.getNum(0,4);
-  var areaPeras=tablaPeras.getNum(0,4);
-  var areaPinas=tablaPinas.getNum(0,4);
-  var areaTomates=tablaTomates.getNum(0,4);
-  var areaUvas=tablaUvas.getNum(0,4);
-  
-  var areaMock = areaAguacate+areaCocos+areaFresas+areaNaranjas+areaPapayas+areaPeras+areaPinas+areaTomates+areaUvas;
-  
-  var areaAguacateF = map(areaAguacate,0,areaMock,0,100);
-  var areaCocosF=map(areaCocos,0,areaMock,0,100);
-  var areaFresasF=map(areaFresas,0,areaMock,0,100);
-  var areaNaranjasF=map(areaNaranjas,0,areaMock,0,100);
-  var areaPapayasF=map(areaPapayas,0,areaMock,0,100);
-  var areaPerasF=map(areaPeras,0,areaMock,0,100);
-  var areaPinasF=map(areaPinas,0,areaMock,0,100);
-  var areaTomatesF=map(areaTomates,0,areaMock,0,100);
-  var areaUvasF=map(areaUvas,0,areaMock,0,100);
+  var areaTotal = (tablaAreaTotal.getNum(0, 4)) * 10;
+  var areaAguacate = tablaAguacate.getNum(0, 4);
+  var areaCocos = tablaCocos.getNum(0, 4);
+  var areaFresas = tablaFresas.getNum(0, 4);
+  var areaNaranjas = tablaNaranjas.getNum(0, 4);
+  var areaPapayas = tablaPapayas.getNum(0, 4);
+  var areaPeras = tablaPeras.getNum(0, 4);
+  var areaPinas = tablaPinas.getNum(0, 4);
+  var areaTomates = tablaTomates.getNum(0, 4);
+  var areaUvas = tablaUvas.getNum(0, 4);
+
+  var areaMock = areaAguacate + areaCocos + areaFresas + areaNaranjas + areaPapayas + areaPeras + areaPinas + areaTomates + areaUvas;
+
+  var areaAguacateF = map(areaAguacate, 0, areaMock, 0, 100);
+  var areaCocosF = map(areaCocos, 0, areaMock, 0, 100);
+  var areaFresasF = map(areaFresas, 0, areaMock, 0, 100);
+  var areaNaranjasF = map(areaNaranjas, 0, areaMock, 0, 100);
+  var areaPapayasF = map(areaPapayas, 0, areaMock, 0, 100);
+  var areaPerasF = map(areaPeras, 0, areaMock, 0, 100);
+  var areaPinasF = map(areaPinas, 0, areaMock, 0, 100);
+  var areaTomatesF = map(areaTomates, 0, areaMock, 0, 100);
+  var areaUvasF = map(areaUvas, 0, areaMock, 0, 100);
   // area total de los datos para poder dividir 
-  
-  var areaMockF2 =map(areaMock,0,areaTotal,0,100);
-  if(animacion==false){
+
+  var areaMockF2 = map(areaMock, 0, areaTotal, 0, 100);
+  if (animacion == false) {
     textFont(fuente2);
-    fill(0);
     textSize(28);
-  text('Toca la pantala para iniciar',width/3,(height/2)-10);
-    tiempo=0;
+    fill(0);
+    text('Toca la pantala para iniciar', width / 3, (height / 2) - 10);
+    tiempo = 0;
   }
-  if(animacion==true){
+  if (animacion == true) {
     tiempo = millis();
-  //inicio
-      if (tiempo >= 0 && tiempo <= 8000) {
-        textFont(fuente1);
-        fondoTitulo()
-        titulo();
-      }
-      // mapa
-      if (tiempo >= 8000 && tiempo <= 14500) {
-        if (tiempo >= 300) {
+    
+    //inicio
+    if (tiempo >= 0 && tiempo <= 8000) {
+      textFont(fuente1);
+      fondoTitulo()
+      titulo();
+    }
+    // mapa
+    if (tiempo >= 8000 && tiempo <= 14500) {
+      if (tiempo >= 300) {
+        for (var i = 0; i < 12; i = i + 1) {
+          siembra[i].dibujarse();
+        }
+        if (tiempo >= 11000 && tiempo <= 14500) {
           for (var i = 0; i < 12; i = i + 1) {
-            siembra[i].dibujarse();
-          }
-          if (tiempo >= 11000 && tiempo <=14500) {
-            for (var i = 0; i < 12; i = i + 1) {
-              siembra[i].moverse();
-              if (siembra[i].y1 >= (height * 0.75)) {
-                siembra[i].morirse();
-                rect(0,height-30,width,-altSiembra);
-              } 
+            siembra[i].moverse();
+            if (siembra[i].y1 >= (height * 0.75)) {
+              siembra[i].morirse();
+              rect(0, height - 30, width, -altSiembra);
             }
           }
         }
-        image(mapa, 0,0, width , height);
-        fill(0);
-        textFont(fuente2);
-        textSize(20);
-        text('Area total Colombia: 100 %',width-300,height-100);
-        text('Area sembrada: '+round(areaMockF2)+'%',width-300,height-70);
       }
-      if (tiempo >= 14500 && tiempo <= 23000) {
-         if (tiempo >= 14500 && tiempo <= 17700){
-           fill(0);
-        rect(0,height-30,width,-altSiembra-crecimiento/1.3);
-           fill(186,247,234);
-           rect(0,height,width,-50-altSiembra+140-crecimiento/3);
-      }else{
+      image(mapa, 0, 0, width, height);
+      fill(0);
+      textFont(fuente2);
+      textSize(20);
+      text('Area total Colombia: 100 %', width - 300, height - 100);
+      text('Area sembrada: ' + round(areaMockF2) + '%', width - 300, height - 70);
+    }
+    if (tiempo >= 14500 && tiempo <= 23000) {
+      if (tiempo >= 14500 && tiempo <= 17700) {
         fill(0);
-      rect(0,height-30,width,-altSiembra-290);
+        rect(0, height - 30, width, -altSiembra - crecimiento / 1.3);
+        fill(186, 247, 234);
+        rect(0, height, width, -50 - altSiembra + 140 - crecimiento / 3);
+      } else {
+        fill(0);
+        rect(0, height - 30, width, -altSiembra - 290);
         stroke(255);
         fill(100);
-        rect(0,(height/2)-115,width,50);
-        rect(0,(height/2)-65,width,40);
-        rect(0,(height/2)-25,width,35);
-        rect(0,(height/2)+10,width,30);
-        rect(0,(height/2)+40,width,25);
-        rect(0,(height/2)+65,width,20);
-        rect(0,(height/2)+80,width,16);
-        rect(0,(height/2)+96,width,10);
-        rect(0,(height/2)+106,width,10);
-        image(mapa, - 186, -558, width  + 372, height + 372);
-        image(aguacateImg,width-20-width/3,(height/2)-115,25,40);
-  image(pinasImg,width-20-width/3,(height/2)-65,25,35);
-   image(tomatesImg,width-20-width/3,(height/2)-25,24,23);
-  image(naranjasImg ,width-15-width/3,(height/2)+10,20,20);
-   image(cocosImg ,width-15-width/3,(height/2)+40,20,15);
-  image(papayasImg,width-20-width/3,(height/2)+65,20,15);
-  image(uvasImg,width-20-width/3,(height/2)+80,20,15);
-  image(fresasImg,width-20-width/3,(height/2)+96,20,15);
-  image(perasImg,width-20-width/3,(height/2)+106,20,15);
-  fill(255);
-  textFont(fuente2);
-  textSize(18);
-  text(int(areaAguacateF)+'%',width-100-width/3,(height/2)-95);
-    text(int(areaPinasF)+'%',width-100-width/3,(height/2)-55,25,35);
-   text(int(areaTomatesF)+'%',width-100-width/3,(height/2)-15,24,23);
-  text(int(areaNaranjasF)+'%',width-100-width/3,(height/2)+10,20,20);
-   text(int(areaCocosF)+'%',width-100-width/3,(height/2)+40,20,15);
- text(int(areaPapayasF)+'%',width-100-width/3,(height/2)+65,20,15);
-  text(int(areaUvasF)+'%',width-100-width/3,(height/2)+80,20,15);
-  text(int(areaFresasF)+'%',width-100-width/3,(height/2)+96,20,15);
-  text(int(areaPerasF)+'%',width-100-width/3,(height/2)+106,20,15);
-   
-        fill(186,247,234);
-        rect(0,height,width,-altSiembra-50);
-       
-     }
-        mapaColombia();
-     }
-  //comparacion con elefante
-        if (tiempo >= 23000 && tiempo <= 27000) {
-        fill(0);
-        textSize(28);
-          textFont(fuente2);
-        textAlign(CENTER);
-        text('1 elefante pesa:', width / 2, height / 8);
-        text('8 toneladas', width / 2, height - height / 8);
-        image(elefante, width / 4, height / 4, 440, 390);
+        rect(0, (height / 2) - 115, width, 50);
+        rect(0, (height / 2) - 65, width, 40);
+        rect(0, (height / 2) - 25, width, 35);
+        rect(0, (height / 2) + 10, width, 30);
+        rect(0, (height / 2) + 40, width, 25);
+        rect(0, (height / 2) + 65, width, 20);
+        rect(0, (height / 2) + 80, width, 16);
+        rect(0, (height / 2) + 96, width, 10);
+        rect(0, (height / 2) + 106, width, 10);
+        image(mapa, -186, -558, width + 372, height + 372);
+        image(aguacateImg, width - 20 - width / 3, (height / 2) - 115, 25, 40);
+        image(pinasImg, width - 20 - width / 3, (height / 2) - 65, 25, 35);
+        image(tomatesImg, width - 20 - width / 3, (height / 2) - 25, 24, 23);
+        image(naranjasImg, width - 15 - width / 3, (height / 2) + 10, 20, 20);
+        image(cocosImg, width - 15 - width / 3, (height / 2) + 40, 20, 15);
+        image(papayasImg, width - 20 - width / 3, (height / 2) + 65, 20, 15);
+        image(uvasImg, width - 20 - width / 3, (height / 2) + 80, 20, 15);
+        image(fresasImg, width - 20 - width / 3, (height / 2) + 96, 20, 15);
+        image(perasImg, width - 20 - width / 3, (height / 2) + 106, 20, 15);
+        fill(255);
+        textFont(fuente2);
+        textSize(18);
+        text(int(areaAguacateF) + '%', width - 100 - width / 3, (height / 2) - 95);
+        text(int(areaPinasF) + '%', width - 100 - width / 3, (height / 2) - 55, 25, 35);
+        text(int(areaTomatesF) + '%', width - 100 - width / 3, (height / 2) - 15, 24, 23);
+        text(int(areaNaranjasF) + '%', width - 100 - width / 3, (height / 2) + 10, 20, 20);
+        text(int(areaCocosF) + '%', width - 100 - width / 3, (height / 2) + 40, 20, 15);
+        text(int(areaPapayasF) + '%', width - 100 - width / 3, (height / 2) + 65, 20, 15);
+        text(int(areaUvasF) + '%', width - 100 - width / 3, (height / 2) + 80, 20, 15);
+        text(int(areaFresasF) + '%', width - 100 - width / 3, (height / 2) + 96, 20, 15);
+        text(int(areaPerasF) + '%', width - 100 - width / 3, (height / 2) + 106, 20, 15);
+
+        fill(186, 247, 234);
+        rect(0, height, width, -altSiembra - 50);
+
       }
-     if (tiempo >= 27000 && tiempo <= 31560) {
-        j = j + 1;
-        if (j <= 280) {
-          image(elefante, (width / 4) - (j * 0.9), (height / 4) - (2 * j / 3), 440 - j, 390 - j);
-        }
+      mapaColombia();
+    }
+    //comparacion con elefante
+    if (tiempo >= 23000 && tiempo <= 27000) {
+      fill(0);
+      textSize(28);
+      textFont(fuente2);
+      textAlign(CENTER);
+      text('1 elefante pesa:', width / 2, height / 8);
+      text('8 toneladas', width / 2, height - height / 8);
+      image(elefante, width / 4, height / 4, 440, 390);
+    }
+    if (tiempo >= 27000 && tiempo <= 31560) {
+      j = j + 1;
+      if (j <= 280) {
+        image(elefante, (width / 4) - (j * 0.9), (height / 4) - (2 * j / 3), 440 - j, 390 - j);
       }
-  
-      if (tiempo >= 31550 && tiempo <= 39000) {
-    image(elefante, (width / 4) - (280 * 0.9), (height / 4) - (2 * 280 / 3), 440 - 280, 390 - 280);
-    textAlign(LEFT);
-        textFont(fuente1);
-        fill(0);
-    text('vs', width / 5, height / 9);
-    text('Toneladas diarias', width / 4, height / 9);
-     //aparicion frutas
-    frutas();
-  frutasElefante();
     }
 
-//comparacion ballena
-   if(tiempo>=39000 && tiempo <=43000){  
-    fill(0);
-     textSize(28);
-        textAlign(CENTER);
-     textFont(fuente2);
-        text('1 Ballena azul pesa:', width / 2, height / 8);
-        text('200 toneladas', width / 2, height - height / 8);
-        image(ballenas, width / 9, 2*height / 7, 840, 300);
+    if (tiempo >= 31550 && tiempo <= 39000) {
+      image(elefante, (width / 4) - (280 * 0.9), (height / 4) - (2 * 280 / 3), 440 - 280, 390 - 280);
+      textAlign(LEFT);
+      textFont(fuente1);
+      fill(0);
+      text('vs', width / 5, height / 9);
+      text('Toneladas diarias', width / 4, height / 9);
+      //aparicion frutas
+      frutas();
+      frutasElefante();
+    }
+
+    //comparacion ballena
+    if (tiempo >= 39000 && tiempo <= 43000) {
+      fill(0);
+      textSize(28);
+      textAlign(CENTER);
+      textFont(fuente2);
+      text('1 Ballena azul pesa:', width / 2, height / 8);
+      text('200 toneladas', width / 2, height - height / 8);
+      image(ballenas, width / 9, 2 * height / 7, 840, 300);
     }
     if (tiempo >= 43000 && tiempo <= 46500) {
-        j1 = j1 + 1;
-        if (j1 <= 210) {
-          image(ballenas, (width / 9) - (j1*0.5), (2*height / 7) - (2 * j1 / 2), 840 - 2.6*j1, 300 - j1);
-         }
+      j1 = j1 + 1;
+      if (j1 <= 210) {
+        image(ballenas, (width / 9) - (j1 * 0.5), (2 * height / 7) - (2 * j1 / 2), 840 - 2.6 * j1, 300 - j1);
+      }
     }
     if (tiempo >= 46490 && tiempo <= 51000) {
-     image(ballenas, (width / 9) - (210*0.5), (2*height / 7) - (2 * 210 / 2), 840 - 2.6*210, 300 - 210);
-    textAlign(LEFT);
+      image(ballenas, (width / 9) - (210 * 0.5), (2 * height / 7) - (2 * 210 / 2), 840 - 2.6 * 210, 300 - 210);
+      textAlign(LEFT);
       textFont(fuente1);
       fill(0);
-    text('vs', 2*width / 6, height / 9);
-    text('Toneladas mensuales', 2*width / 5, height / 9)
-    //aparicion frutas
-    frutas();
-   frutasBallena();
-  }
+      text('vs', 2 * width / 6, height / 9);
+      text('Toneladas mensuales', 2 * width / 5, height / 9)
+      //aparicion frutas
+      frutas();
+      frutasBallena();
+    }
 
-     //titanic
-    if(tiempo >= 51000 && tiempo <= 55000) {
-        textSize(28);
+    //titanic
+    if (tiempo >= 51000 && tiempo <= 55000) {
+      textSize(28);
       textFont(fuente2);
       fill(0);
-        textAlign(CENTER);
-        text('El titanic pesaba:', width / 2, height / 8);
-        text('46.000 toneladas', width / 2, height - height / 8);
-        image(titanic, width / 9, 2*height / 7, 840, 300);
+      textAlign(CENTER);
+      text('El titanic pesaba:', width / 2, height / 8);
+      text('46.000 toneladas', width / 2, height - height / 8);
+      image(titanic, width / 9, 2 * height / 7, 840, 300);
     }
-   if (tiempo >= 55000 && tiempo <= 58480) {
-        j2 = j2 + 1;
-        if (j2 <= 210) {
-          image(titanic, (width / 9) - (j2*0.5), (2*height / 7) - (2 * j2 / 2), 840 - 2.6*j2, 300 - j2);
-        }
-   }
+    if (tiempo >= 55000 && tiempo <= 58480) {
+      j2 = j2 + 1;
+      if (j2 <= 210) {
+        image(titanic, (width / 9) - (j2 * 0.5), (2 * height / 7) - (2 * j2 / 2), 840 - 2.6 * j2, 300 - j2);
+      }
+    }
     //comparacion titanic
     if (tiempo >= 58480 && tiempo <= 65000) {
-      image(titanic, (width / 9) - (210*0.5), (2*height / 7) - (2 * 210 / 2), 840 - 2.6*210, 300 - 210);
-    textAlign(LEFT);
+      image(titanic, (width / 9) - (210 * 0.5), (2 * height / 7) - (2 * 210 / 2), 840 - 2.6 * 210, 300 - 210);
+      textAlign(LEFT);
       textFont(fuente1);
       fill(0);
-    text('vs', 2*width / 6, height / 9);
-    text('Toneladas anuales', 2*width / 5, height / 9);
-    frutasTitanic();
-         frutas();
+      text('vs', 2 * width / 6, height / 9);
+      text('Toneladas anuales', 2 * width / 5, height / 9);
+      frutasTitanic();
+      frutas();
     }
-  //aguacates vs pinas
-    if (tiempo >= 65000 ) {
-     fondoDoble();
+    //aguacates vs pinas
+    if (tiempo >= 65000) {
+      fondoDoble();
     }
     if (tiempo >= 65000 && tiempo <= 121000) {
       frutasVersus();
     }
-//eleccion de que comparar
-   if (tiempo >= 73000 && tiempo <= 96000) {
-    push();
-    fill(255,255,255,120);
-    strokeWeight(2);
+    //eleccion de que comparar
+    if (tiempo >= 73000 && tiempo <= 96000) {
+      push();
+      fill(255, 255, 255, 120);
+      strokeWeight(2);
       stroke(0);
-      rect(posX,posY,110,70,5);
-    pop();
+      rect(posX, posY, 110, 70, 5);
+      pop();
       textFont(fuente2);
-    textSize(20);
-    text('arrastre el cuadro al que quiere observar',(width/2)-170,(height/14)+80);
+      textSize(20);
+      text('arrastre el cuadro al que quiere observar', (width / 2) - 160, (height / 14) + 80);
       elefantes(posXE, posYE, wE, hE);
       ballena(posXB, posYB, wB, hB);
       titanics(posXT, posYT, wT, hT);
-      image(chapinero,posXC, posYC, wC, hC);
+      image(chapinero, posXC, posYC, wC, hC);
 
-     if(posX>=180 && posX<=205){
-       comparacionElefante();
-     }
-    else if(posX>=320 && posX<=335){
-    comparacionBallena();
-     }
-     else if(posX>=595 && posX<=610){
-     comparacionTitanic();
-     }
-     else if(posX>=740 && posX<=770){
-     comparacionChapinero();
+      if (posX >= 180 && posX <= 205) {
+        comparacionElefante();
+      } else if (posX >= 320 && posX <= 335) {
+        comparacionBallena();
+      } else if (posX >= 595 && posX <= 610) {
+        comparacionTitanic();
+      } else if (posX >= 740 && posX <= 770) {
+        comparacionChapinero();
+      }
+
     }
-
-  }
-  //comparacion plantas
-     if (tiempo >= 96000 && tiempo <= 120000) {
+    //comparacion plantas
+    if (tiempo >= 96000 && tiempo <= 120000) {
       plantasArbol();
 
-//compracion cantidad producida
-  if(tiempo >= 102000 && tiempo <= 114000){
-    textFont(fuente2);
-    textSize(20);
-    text('agite el equipo',(width/2)-70,height/14);
-    if(accelerationX>=60 && accelerationY>=60 || accelerationZ>=10){
-    moverse=true;
-    } 
-    if(moverse==true){
-        caidaFrutas();
-        } 
-       }
-     }
-      if(tiempo>=114000 && tiempo<=120000){
+      //compracion cantidad producida
+      if (tiempo >= 102000 && tiempo <= 114000) {
+        textFont(fuente2);
+        textSize(20);
+        text('agite el equipo', (width / 2) - 70, height / 14);
+        if (accelerationX >= 60 && accelerationY >= 60 || accelerationZ >= 10) {
+          moverse = true;
+        }
+        if (moverse == true) {
+          caidaFrutas();
+        }
+      }
+    }
+    if (tiempo >= 114000 && tiempo <= 120000) {
       produccionFrutas();
-      }
-  //votacion fruta
-    if(tiempo>=120000 && tiempo<=140000){
+    }
+    //votacion fruta
+    if (tiempo >= 120000 && tiempo <= 140000) {
       votacion();
-      }
-    if(tiempo>=140000){
-      animacion=false;
-      }
+    }
+    if (tiempo >= 140000) {
+      animacion = false;
+      tiempo=tiempo-tiempoInicio;
+    }
   }
 }
 
@@ -425,7 +425,7 @@ function titulo() {
     fill(255);
     text('Frutas', (width / 2) - 90, height / 2);
     text('Colombia', (width / 2) + 30, height / 2);
-    text('en', (width / 2) -5, height / 2);
+    text('en', (width / 2) - 5, height / 2);
   }
   x = x + 1.66;
   y = y + 1.5;
@@ -457,9 +457,9 @@ function mapaColombia() {
   movX = movX + 1;
   movY = movY + 3;
   if (movX < width / 5.5 && movX > 0) {
-    image(mapa, -movX,-movY, width + crecimiento, height + crecimiento);
+    image(mapa, -movX, -movY, width + crecimiento, height + crecimiento);
   } else {
-    image(mapa, - 186, -558, width  + 372, height + 372);
+    image(mapa, -186, -558, width + 372, height + 372);
   }
 }
 
@@ -474,8 +474,8 @@ function zonas(_x, _y) {
     fill(0);
     if (this.viva == true && status == 0) {
       rect(this.x1, this.y1, 20, 20);
-    }else if (this.viva == false && status == 0) {
-      altSiembra = altSiembra +15;
+    } else if (this.viva == false && status == 0) {
+      altSiembra = altSiembra + 15;
       status = status + 1;
     }
   }
@@ -533,7 +533,7 @@ function frutas() {
 function frutasElefante() {
   //comparacion con elefante
   //elefantes por fruta
-fill(0);
+  fill(0);
   //peras
   cantElefante = (tablaPeras.getNum(38, 4) / 365) / 8;
   text(round(cantElefante).toFixed(2), 100 + (width / 15), (height / 5) + 50);
@@ -559,7 +559,7 @@ fill(0);
   //cocos
   cantElefante = (tablaCocos.getNum(66, 4) / 365) / 8;
   text(int(cantElefante), 100 + (width / 15), (2.2 * height / 5) + 50);
-  for (var i = 0; i < (int(cantElefante) / 4) ; i++) {
+  for (var i = 0; i < (int(cantElefante) / 4); i++) {
     elefantes((23 * i) + (width / 15), (2.2 * height / 5) + 70, 25, 20);
     elefantes((23 * i) + (width / 15), (2.2 * height / 5) + 100, 25, 20);
     elefantes((23 * i) + (width / 15), (2.2 * height / 5) + 130, 25, 20);
@@ -590,7 +590,7 @@ fill(0);
   text(int(cantElefante), 100 + (width / 15), (3.5 * height / 5) + 50);
   for (var i = 0; i < (int(cantElefante) / 10); i++) {
     fill(150);
-   noStroke();
+    noStroke();
     ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 80, 8, 8);
     ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 95, 8, 8);
     ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 110, 8, 8);
@@ -617,18 +617,18 @@ fill(0);
   fill(0);
   cantElefante = (tablaPinas.getNum(114, 4) / 365) / 8;
   text((int(cantElefante)), 100 + (10 * width / 15), (3.5 * height / 5) + 50);
-   for (var i = 0; i < (int(cantElefante)/ 10); i++) {
+  for (var i = 0; i < (int(cantElefante) / 10); i++) {
     fill(150);
-     noStroke();
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 80, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 95, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 110, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 125, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 140, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 155, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 170, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 185, 5, 5);
-    ellipse((10 *width / 15) + 8 * i, (3.5 * height / 5) + 200, 5, 5);
+    noStroke();
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 80, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 95, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 110, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 125, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 140, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 155, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 170, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 185, 5, 5);
+    ellipse((10 * width / 15) + 8 * i, (3.5 * height / 5) + 200, 5, 5);
   }
 }
 
@@ -639,7 +639,7 @@ function frutasBallena() {
   noStroke();
   cantBallenas = (tablaPeras.getNum(38, 4) / 12) / 200;
   text(int(cantBallenas), 100 + (width / 15), (height / 5) + 50);
-  for (var i = 0; i < (int(cantBallenas) / 3) ; i++) {
+  for (var i = 0; i < (int(cantBallenas) / 3); i++) {
     ballena((75 * i) + width / 15, (height / 5) + 70, 70, 25);
     ballena((75 * i) + width / 15, (height / 5) + 105, 70, 25);
     ballena((75 * i) + width / 15, (height / 5) + 140, 70, 25);
@@ -647,7 +647,7 @@ function frutasBallena() {
   //uvas
   cantBallenas = (tablaUvas.getNum(114, 4) / 12) / 200;
   text(int(cantBallenas), 100 + (5 * width / 15), (height / 5) + 50);
-  for (var i = 0; i < (int(cantBallenas) / 3) ; i++) {
+  for (var i = 0; i < (int(cantBallenas) / 3); i++) {
     ballena((75 * i) + (5 * width / 15), (height / 5) + 70, 70, 25);
     ballena((75 * i) + (5 * width / 15), (height / 5) + 105, 70, 25);
     ballena((75 * i) + (5 * width / 15), (height / 5) + 140, 70, 25);
@@ -700,61 +700,61 @@ function frutasBallena() {
   //tomates
   cantBallenas = (tablaTomates.getNum(114, 4) / 12) / 200;
   text(int(cantBallenas), 100 + (width / 15), (3.5 * height / 5) + 50);
-   for (var i = 0; i < (int(cantBallenas) / 12) - 1; i++) {
-     noStroke();
-     fill(120,210,240);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 80, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 90, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 100, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 110, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 120, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 130, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 140, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 150, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 160, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 170, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 180, 5, 5);
-      ellipse((width / 15)+10*i, (3.5 * height / 5) + 190, 5, 5);
-   }
+  for (var i = 0; i < (int(cantBallenas) / 12) - 1; i++) {
+    noStroke();
+    fill(120, 210, 240);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 80, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 90, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 100, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 110, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 120, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 130, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 140, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 150, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 160, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 170, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 180, 5, 5);
+    ellipse((width / 15) + 10 * i, (3.5 * height / 5) + 190, 5, 5);
+  }
   //aguacate
   fill(0);
   cantBallenas = (tablaAguacate.getNum(114, 4) / 12) / 200;
   text(int(cantBallenas), 100 + (5 * width / 15), (3.5 * height / 5) + 50);
-   for (var i = 0; i < (int(cantBallenas) / 8) - 1; i++) {
-     noStroke();
-     fill(120,210,240);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 80, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 95, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 110, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 125, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 140, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 155, 10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 170,10, 10);
-      ellipse((5*width / 15)+19*i, (3.5 * height / 5) + 185, 10, 10);
-   }
- 
+  for (var i = 0; i < (int(cantBallenas) / 8) - 1; i++) {
+    noStroke();
+    fill(120, 210, 240);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 80, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 95, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 110, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 125, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 140, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 155, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 170, 10, 10);
+    ellipse((5 * width / 15) + 19 * i, (3.5 * height / 5) + 185, 10, 10);
+  }
+
   //pinas
   fill(0);
   cantBallenas = (tablaPinas.getNum(114, 4) / 12) / 200;
   text(int(cantBallenas), 100 + (10 * width / 15), (3.5 * height / 5) + 50);
   for (var i = 0; i < (int(cantBallenas) / 14) - 1; i++) {
-     noStroke();
-     fill(120,210,240);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 80, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 88, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 96, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 104, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 112, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 120, 5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 128,5, 5);
-      ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 136, 5, 5);
-     ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 144, 5, 5);
-     ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 152, 5, 5);
-    ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 160, 5, 5);
-     ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 168, 5, 5);
-    ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 176, 5, 5);
-     ellipse((10*width / 15)+10*i, (3.5 * height / 5) + 184, 5, 5);
-   }
+    noStroke();
+    fill(120, 210, 240);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 80, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 88, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 96, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 104, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 112, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 120, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 128, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 136, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 144, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 152, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 160, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 168, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 176, 5, 5);
+    ellipse((10 * width / 15) + 10 * i, (3.5 * height / 5) + 184, 5, 5);
+  }
 }
 
 function frutasTitanic() {
@@ -821,7 +821,7 @@ function frutasTitanic() {
     titanics((70 * i) + (width / 15), (3.5 * height / 5) + 100, 70, 30);
     titanics((70 * i) + (width / 15), (3.5 * height / 5) + 130, 70, 30);
     titanics((70 * i) + (width / 15), (3.5 * height / 5) + 160, 70, 30);
-   
+
   }
   //aguacate
   cantTitanics = (tablaAguacate.getNum(114, 4) / 46000);
@@ -915,13 +915,13 @@ function comparacionElefante() {
     elefantes(15 + (10 * width / 15), (height / 3) + 20 + 100 * i, 145, 100);
     elefantes(30 + (12 * width / 15), (height / 3) + 20 + 100 * i, 145, 100);
   }
-  text(int(cantElefante * 30), (10 * width / 15)+80, (height / 5) + 50);
+  text(int(cantElefante * 30), (10 * width / 15) + 80, (height / 5) + 50);
 }
 
 function comparacionBallena() {
   text('1 ballena equivale a 30 ballenas (6000 Ton)', width / 2.5, height - height / 16);
   text('Ballenas mensuales en producción', width / 2.5, height / 6);
-  ballena((width / 4), (height - height / 16) - 20, 130, 50);
+  ballena((width / 4), (height - height / 16) - 30, 130, 50);
   //aguacate
   cantBallenas = (tablaAguacate.getNum(114, 4) / 12) / 6000;
   for (var i = 0; i < (int(cantBallenas) / 2); i++) {
@@ -931,21 +931,21 @@ function comparacionBallena() {
   text(int(cantBallenas * 30), 170 + (width / 14), (height / 5) + 50);
   //pinas
   cantBallenas = (tablaPinas.getNum(114, 4) / 12) / 6000;
-  for (var i = 0; i < (int(cantBallenas) / 3) ; i++) {
+  for (var i = 0; i < (int(cantBallenas) / 3); i++) {
     ballena((8 * width / 15), (height / 3) + 20 + 80 * i, 145, 60);
     ballena(15 + (10 * width / 15), (height / 3) + 20 + 80 * i, 145, 60);
     ballena(30 + (12 * width / 15), (height / 3) + 20 + 80 * i, 145, 60);
   }
-  text(int(cantBallenas * 30), (10 * width / 15)+80, (height / 5) + 50);
+  text(int(cantBallenas * 30), (10 * width / 15) + 80, (height / 5) + 50);
 }
 
 function comparacionTitanic() {
   text('Equivale a 46000 toneladas', width / 2.5, height - height / 16);
   text('Titanics anuales en producción', width / 2.5, height / 6);
-  titanics((width / 4), (height - height / 16) - 20, 130, 50);
+  titanics((width / 4), (height - height / 16) - 30, 130, 50);
   //aguacate
   cantTitanics = (tablaAguacate.getNum(114, 4) / 46000);
-  for (var i = 0; i < (int(cantTitanics) / 2) ; i++) {
+  for (var i = 0; i < (int(cantTitanics) / 2); i++) {
     titanics((width / 12) - 40, (height / 2.5) + 120 * i, 200, 80);
     titanics(80 + (width / 6), (height / 2.5) + 120 * i, 200, 80);
   }
@@ -958,13 +958,13 @@ function comparacionTitanic() {
     titanics(20 + (11 * width / 15), (height / 2.7) + 20 + 60 * i, 100, 40);
     titanics(30 + (12.5 * width / 15), (height / 2.7) + 20 + 60 * i, 100, 40);
   }
-  text(int(cantTitanics), (10 * width / 15)+80, (height / 5) + 50);
+  text(int(cantTitanics), (10 * width / 15) + 80, (height / 5) + 50);
 }
 
 function comparacionChapinero() {
   text('1 mapa equivale a 3898 hectareas', width / 2.4, height - height / 16);
   text('Chapinero', width / 2.4, height + 20 - height / 16);
-  text('Area total en Chapineros', (width / 2.2)-20, height / 6);
+  text('Area total en Chapineros', (width / 2.2) - 30, height / 6);
   image(chapinero, (width / 3.5), (height - height / 16) - 30, 100, 60);
   //aguacate
   cantChapinero = (tablaAguacate.getNum(1, 4) / 3898);
@@ -979,7 +979,7 @@ function comparacionChapinero() {
     image(chapinero, (9 * width / 15), (height / 2.7) + 20 + 120 * i, 160, 90);
     image(chapinero, 30 + (11 * width / 15), (height / 2.7) + 20 + 120 * i, 160, 90);
   }
-  text(int(cantChapinero), (10 * width / 15)+80, (height / 5) + 50);
+  text(int(cantChapinero), (10 * width / 15) + 80, (height / 5) + 50);
 }
 
 function plantasArbol() {
@@ -1051,5 +1051,6 @@ function votacion() {
 }
 
 function touchStarted() {
-  animacion=true;
+  animacion = true;
+  tiempoInicio=millis();
 }
