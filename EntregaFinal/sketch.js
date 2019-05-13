@@ -176,6 +176,8 @@ function draw() {
   
   var areaMockF2 =map(areaMock,0,areaTotal,0,100);
   if(animacion==false){
+    textFont(fuente2);
+    textSize(28);
   text('toca la pantala para iniciar',width/3,(height/2)-10);
     tiempo=0;
   }
