@@ -175,10 +175,10 @@ function draw() {
   // area total de los datos para poder dividir 
   
   var areaMockF2 =map(areaMock,0,areaTotal,0,100);
-  // if(animacion==false){
-  // text('toca la pantala para iniciar',width/3,(height/2)-10);
-  // }
-  // if(animacion==true){
+  if(animacion==false){
+  text('toca la pantala para iniciar',width/3,(height/2)-10);
+  }
+  if(animacion==true){
     tiempo = millis();
   //inicio
       if (tiempo >= 0 && tiempo <= 8000) {
@@ -403,10 +403,10 @@ function draw() {
     if(tiempo>=120000 && tiempo<=140000){
       votacion();
       }
-  //   if(tiempo>=140000){
-  //     animacion=false;
-  //     }
-  // }
+    if(tiempo>=140000){
+      animacion=false;
+      }
+  }
 }
 
 function titulo() {
