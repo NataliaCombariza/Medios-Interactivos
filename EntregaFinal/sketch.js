@@ -177,6 +177,7 @@ function draw() {
   var areaMockF2 =map(areaMock,0,areaTotal,0,100);
   if(animacion==false){
     textFont(fuente2);
+    fill(0);
     textSize(28);
   text('Toca la pantala para iniciar',width/3,(height/2)-10);
     tiempo=0;
@@ -920,7 +921,7 @@ function comparacionElefante() {
 function comparacionBallena() {
   text('1 ballena equivale a 30 ballenas (6000 Ton)', width / 2.5, height - height / 16);
   text('Ballenas mensuales en producción', width / 2.5, height / 6);
-  ballena((width / 4), (height - height / 16) - 30, 130, 50);
+  ballena((width / 4), (height - height / 16) - 20, 130, 50);
   //aguacate
   cantBallenas = (tablaAguacate.getNum(114, 4) / 12) / 6000;
   for (var i = 0; i < (int(cantBallenas) / 2); i++) {
@@ -941,7 +942,7 @@ function comparacionBallena() {
 function comparacionTitanic() {
   text('Equivale a 46000 toneladas', width / 2.5, height - height / 16);
   text('Titanics anuales en producción', width / 2.5, height / 6);
-  titanics((width / 4), (height - height / 16) - 30, 130, 50);
+  titanics((width / 4), (height - height / 16) - 20, 130, 50);
   //aguacate
   cantTitanics = (tablaAguacate.getNum(114, 4) / 46000);
   for (var i = 0; i < (int(cantTitanics) / 2) ; i++) {
@@ -963,7 +964,7 @@ function comparacionTitanic() {
 function comparacionChapinero() {
   text('1 mapa equivale a 3898 hectareas', width / 2.4, height - height / 16);
   text('Chapinero', width / 2.4, height + 20 - height / 16);
-  text('Area total en Chapineros', (width / 2.2)-30, height / 6);
+  text('Area total en Chapineros', (width / 2.2)-20, height / 6);
   image(chapinero, (width / 3.5), (height - height / 16) - 30, 100, 60);
   //aguacate
   cantChapinero = (tablaAguacate.getNum(1, 4) / 3898);
