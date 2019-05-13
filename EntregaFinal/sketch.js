@@ -43,7 +43,7 @@ var posYC = 50;
 var wC = 80;
 var hC = 50;
 
-var tiempo = 0;
+var tiempo;
 var crecimiento = 0;
 var movX = 0;
 var movY = 0;
