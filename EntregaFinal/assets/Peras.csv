@@ -1,0 +1,63 @@
+Country or Area,Element,Year,Unit,Value,Value Footnotes
+Colombia,Area harvested,2017,ha,1520,Im
+Colombia,Area harvested,2016,ha,1497,
+Colombia,Area harvested,2015,ha,1497,
+Colombia,Area harvested,2014,ha,1490,
+Colombia,Area harvested,2013,ha,1714,
+Colombia,Area harvested,2012,ha,1256,
+Colombia,Area harvested,2011,ha,1287,
+Colombia,Area harvested,2010,ha,1374,
+Colombia,Area harvested,2009,ha,1251,
+Colombia,Area harvested,2008,ha,1099,
+Colombia,Area harvested,2007,ha,1123,
+Colombia,Area harvested,2006,ha,1228,
+Colombia,Area harvested,2005,ha,1205,
+Colombia,Area harvested,2004,ha,1209,
+Colombia,Area harvested,2003,ha,1175,
+Colombia,Area harvested,2002,ha,1006,
+Colombia,Area harvested,2001,ha,1201,
+Colombia,Area harvested,2000,ha,1152,
+Colombia,Area harvested,1999,ha,1100,F
+Colombia,Yield,2017,hg/ha,149738,Fc
+Colombia,Yield,2016,hg/ha,149741,Fc
+Colombia,Yield,2015,hg/ha,131930,Fc
+Colombia,Yield,2014,hg/ha,131859,Fc
+Colombia,Yield,2013,hg/ha,133918,Fc
+Colombia,Yield,2012,hg/ha,125900,Fc
+Colombia,Yield,2011,hg/ha,116923,Fc
+Colombia,Yield,2010,hg/ha,129541,Fc
+Colombia,Yield,2009,hg/ha,121966,Fc
+Colombia,Yield,2008,hg/ha,123558,Fc
+Colombia,Yield,2007,hg/ha,133179,Fc
+Colombia,Yield,2006,hg/ha,123599,Fc
+Colombia,Yield,2005,hg/ha,122573,Fc
+Colombia,Yield,2004,hg/ha,126725,Fc
+Colombia,Yield,2003,hg/ha,125328,Fc
+Colombia,Yield,2002,hg/ha,128867,Fc
+Colombia,Yield,2001,hg/ha,88535,Fc
+Colombia,Yield,2000,hg/ha,83620,Fc
+Colombia,Yield,1999,hg/ha,84545,Fc
+Colombia,Production,2017,tonnes,22767,Im
+Colombia,Production,2016,tonnes,22422,
+Colombia,Production,2015,tonnes,19755,
+Colombia,Production,2014,tonnes,19646,
+Colombia,Production,2013,tonnes,22954,
+Colombia,Production,2012,tonnes,15807,
+Colombia,Production,2011,tonnes,15048,
+Colombia,Production,2010,tonnes,17799,
+Colombia,Production,2009,tonnes,15258,
+Colombia,Production,2008,tonnes,13579,
+Colombia,Production,2007,tonnes,14956,
+Colombia,Production,2006,tonnes,15178,
+Colombia,Production,2005,tonnes,14770,
+Colombia,Production,2004,tonnes,15321,
+Colombia,Production,2003,tonnes,14726,
+Colombia,Production,2002,tonnes,12964,
+Colombia,Production,2001,tonnes,10633,
+Colombia,Production,2000,tonnes,9633,
+Colombia,Production,1999,tonnes,9300,F
+,,,,,
+fnSeqID,Footnote,,,,
+F,FAO estimate,,,,
+Fc,Calculated data,,,,
+Im,FAO data based on imputation methodology,,,,
