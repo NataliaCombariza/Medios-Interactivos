@@ -178,7 +178,7 @@ function draw() {
   if(animacion==false){
     textFont(fuente2);
     textSize(28);
-  text('toca la pantala para iniciar',width/3,(height/2)-10);
+  text('Toca la pantala para iniciar',width/3,(height/2)-10);
     tiempo=0;
   }
   if(animacion==true){
