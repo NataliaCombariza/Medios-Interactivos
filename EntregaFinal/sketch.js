@@ -363,7 +363,7 @@ function draw() {
     pop();
       textFont(fuente2);
     textSize(20);
-    text('arrastre el cuadro al que quiere observar',(width/2)-160,(height/14)+80);
+    text('arrastre el cuadro al que quiere observar',(width/2)-170,(height/14)+80);
       elefantes(posXE, posYE, wE, hE);
       ballena(posXB, posYB, wB, hB);
       titanics(posXT, posYT, wT, hT);
