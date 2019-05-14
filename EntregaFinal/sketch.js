@@ -412,10 +412,10 @@ function draw() {
       produccionFrutas();
     }
     //votacion fruta
-    if (tiempo >= 120000 && tiempo <= 135000) {
+    if (tiempo >= 120000 && tiempo <= 132000) {
       votacion();
     }
-    if (tiempo >= 135000) {
+    if (tiempo >= 132000) {
       animacion = false;
       pasoAnimacion=false;
       moverse=false;
