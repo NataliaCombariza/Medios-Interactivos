@@ -19,10 +19,11 @@ var morirse = false;
 var moverse = false;
 var contPinas = 0;
 var contAguacate = 0;
-var muestraPinas = 0;
+var muestraPina = 0;
 var muestraAguacate = 0;
 
 var animacion = false;
+var pasoAnimacion = false;
 
 var posX = 460;
 var posY = 40;
@@ -144,6 +145,7 @@ function preload() {
 
 function setup() {
   createCanvas(1024, 768);
+  tiempoInicio = millis();
   for (var i = 0; i < 12; i = i + 1) {
     siembra[i] = new zonas(random((width / 5.5) + 100, width - 400), random(height / 3, 2 * height / 3));
   }
@@ -176,21 +178,28 @@ function draw() {
   // area total de los datos para poder dividir 
 
   var areaMockF2 = map(areaMock, 0, areaTotal, 0, 100);
+
+  if((animacion != pasoAnimacion)){
+      pasoAnimacion=animacion;
+      tiempoInicio = millis();
+    }  
+  tiempo = millis() - tiempoInicio;
+  
   if (animacion == false) {
     textFont(fuente2);
     textSize(28);
     fill(0);
-    text('Toca la pantala para iniciar', width / 3, (height / 2) - 10);
-    tiempo = 0;
+    text('Toca la pantalla para iniciar', width / 3, (height / 2) - 10);
   }
-  if (animacion == true) {
-    tiempo = millis();
-    
+
+  if (animacion == true ) { 
+        
     //inicio
     if (tiempo >= 0 && tiempo <= 8000) {
       textFont(fuente1);
       fondoTitulo()
       titulo();
+     
     }
     // mapa
     if (tiempo >= 8000 && tiempo <= 14500) {
@@ -365,7 +374,7 @@ function draw() {
       pop();
       textFont(fuente2);
       textSize(20);
-      text('arrastre el cuadro al que quiere observar', (width / 2) - 160, (height / 14) + 80);
+      text('Arrastre el cuadro al que quiere observar', (width / 2) - 160, (height / 14) - 20);
       elefantes(posXE, posYE, wE, hE);
       ballena(posXB, posYB, wB, hB);
       titanics(posXT, posYT, wT, hT);
@@ -390,7 +399,7 @@ function draw() {
       if (tiempo >= 102000 && tiempo <= 114000) {
         textFont(fuente2);
         textSize(20);
-        text('agite el equipo', (width / 2) - 70, height / 14);
+        text('Agite el equipo', (width / 2) - 70, height / 14);
         if (accelerationX >= 60 && accelerationY >= 60 || accelerationZ >= 10) {
           moverse = true;
         }
@@ -403,15 +412,43 @@ function draw() {
       produccionFrutas();
     }
     //votacion fruta
-    if (tiempo >= 120000 && tiempo <= 140000) {
+    if (tiempo >= 120000 && tiempo <= 135000) {
       votacion();
     }
-    if (tiempo >= 140000) {
+    if (tiempo >= 135000) {
       animacion = false;
-      tiempo=tiempo-tiempoInicio;
+      pasoAnimacion=false;
+      moverse=false;
+       x = 0; 
+      y = 0;
+      x1 = 0;
+      y1 = 0; 
+      x2 = -100;
+      y2 = -100;
+      x3 = -100;
+      y3 = -100;
+      j = 0;
+      j1 = 0;
+      j2 = 0;
+      j3 = 0;
+      k = 0;
+      vel1 = 0;
+      vel2 = 0;
+      vel3 = 0;
+      vel = 0;
+      crecimiento = 0;
+      movX = 0;
+      movY = 0;
+      siembra = [];
+        for (var i = 0; i < 12; i = i + 1) {
+    siembra[i] = new zonas(random((width / 5.5) + 100, width - 400), random(height / 3, 2 * height / 3));
+  }
+      // this.viva=true;
+      altSiembra = 0;
     }
   }
 }
+
 
 function titulo() {
   textSize(26);
@@ -474,6 +511,7 @@ function zonas(_x, _y) {
     fill(0);
     if (this.viva == true && status == 0) {
       rect(this.x1, this.y1, 20, 20);
+      status = 0;
     } else if (this.viva == false && status == 0) {
       altSiembra = altSiembra + 15;
       status = status + 1;
@@ -899,8 +937,8 @@ function touchMoved() {
 
 function comparacionElefante() {
   text('1 elefante equivale a 30 elefantes (240 Ton)', width / 2.5, height - height / 16);
-  text('Elefantes diarios en producción', width / 2.5, height / 6);
-  elefantes((width / 4), (height - height / 16) - 45, 120, 75);
+  text('Elefantes diarios en producción', (width / 2.5) - 25, height / 6);
+  elefantes((width / 4), (height - height / 16) - 30, 120, 75);
   //aguacate
   cantElefante = (tablaAguacate.getNum(114, 4) / 365) / 240;
   for (var i = 0; i < int(cantElefante) / 2; i++) {
@@ -920,7 +958,7 @@ function comparacionElefante() {
 
 function comparacionBallena() {
   text('1 ballena equivale a 30 ballenas (6000 Ton)', width / 2.5, height - height / 16);
-  text('Ballenas mensuales en producción', width / 2.5, height / 6);
+  text('Ballenas mensuales en producción', (width / 2.5) - 30, height / 6);
   ballena((width / 4), (height - height / 16) - 30, 130, 50);
   //aguacate
   cantBallenas = (tablaAguacate.getNum(114, 4) / 12) / 6000;
@@ -941,7 +979,7 @@ function comparacionBallena() {
 
 function comparacionTitanic() {
   text('Equivale a 46000 toneladas', width / 2.5, height - height / 16);
-  text('Titanics anuales en producción', width / 2.5, height / 6);
+  text('Titanics anuales en producción', (width / 2.5) - 30, height / 6);
   titanics((width / 4), (height - height / 16) - 30, 130, 50);
   //aguacate
   cantTitanics = (tablaAguacate.getNum(114, 4) / 46000);
@@ -964,7 +1002,7 @@ function comparacionTitanic() {
 function comparacionChapinero() {
   text('1 mapa equivale a 3898 hectareas', width / 2.4, height - height / 16);
   text('Chapinero', width / 2.4, height + 20 - height / 16);
-  text('Area total en Chapineros', (width / 2.2) - 30, height / 6);
+  text('Area total en Chapineros', (width / 2.2) - 40, height / 6);
   image(chapinero, (width / 3.5), (height - height / 16) - 30, 100, 60);
   //aguacate
   cantChapinero = (tablaAguacate.getNum(1, 4) / 3898);
@@ -1033,12 +1071,16 @@ function votacion() {
   image(pinasImg, 5 * width / 8, (height / 5) - 25, 300, 400);
   text('Piña', (width - width / 3) + 50, height - height / 5);
   text('¿Cual prefieres?', width / 2 - 80, height / 8);
-  text(muestraPinas, (width - width / 3) + 50, (height - height / 5) + 100);
+  text(muestraPina, (width - width / 3) + 50, (height - height / 5) + 100);
   text(muestraAguacate, (width / 4) - 40, (height - height / 5) + 100);
+  textFont(fuente2);
+  textSize(22);
+  text('Gira el equipo al lado de la fruta que eliges', (width / 2) - 200, (height / 8) + 50);
+
   if (rotationX >= 15 && rotationY <= 15) {
     contPinas = contPinas + 1;
     if (contPinas >= 20) {
-      muestraPina = -200
+      contPinas = -200
       muestraPina = muestraPina + 1;
     }
   } else if (rotationX <= -15 && rotationY <= 15) {
@@ -1052,5 +1094,4 @@ function votacion() {
 
 function touchStarted() {
   animacion = true;
-  tiempoInicio=millis();
 }
